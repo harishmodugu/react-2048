@@ -1,0 +1,21 @@
+{
+  "name": "react-2048",
+  "version": "1.0.0",
+  "description": "2048 game built using React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "2048"
+  ],
+  "author": "Harish Modugu",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.4.2"
+  },
+  "devDependencies": {
+    "webpack": "^2.3.3"
+  }
+}
