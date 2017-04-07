@@ -1,5 +1,8 @@
 node_modules
 *.tmp
-*.swap
+*.swp
+*.swo
+*.swn
+npm-debug.log
 
 
