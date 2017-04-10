@@ -1,15 +1,27 @@
 const path = require('path');
 const webpack = require('webpack');
-const webPublicPath = path.resolve(__dirname, 'public');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const webPublicPath = path.resolve(__dirname, 'public');
+const rootPath = path.resolve(__dirname, 'src');
+
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: path.join(webPublicPath,'/index.html'),
+  template: path.join(rootPath,'/index.html'),
   filename: 'index.html',
   inject: 'body'
 });
 
+const CopyWebpackPluginConfig = new CopyWebpackPlugin([
+    {
+      from: path.join(rootPath, '/index.html'),
+      to: path.join(webPublicPath, '/index.html')
+    }
+]);
+
+
 const config = {
-  entry: path.resolve(__dirname, 'src/app.js'),
+  entry: path.join(rootPath, 'app.js'),
   output: {
     path: webPublicPath,
     filename: 'bundle.js'
@@ -24,11 +36,13 @@ const config = {
   },
   resolve: {
     alias: {
-      components: path.resolve(__dirname, 'src/js/components/'),
-      css: path.resolve(__dirname, 'src/js/styles/')
+      components: path.join(rootPath, 'js/components/'),
+      css: path.join(rootPath, 'js/styles/'),
+      react: path.resolve(__dirname, './node_modules/react'),
+      React: path.resolve(__dirname, './node_modules/react')
     }
   },
-  plugins: [HtmlWebpackPluginConfig]
+  plugins: [HtmlWebpackPluginConfig, CopyWebpackPluginConfig]
 };
 
 module.exports = config;
